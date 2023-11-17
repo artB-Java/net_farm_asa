@@ -7,8 +7,8 @@ from sqlalchemy.orm import relationship
 url = URL.create(
     drivername='postgresql+psycopg2',
     username='postgres',
-    password='871609',
-    host='172.17.0.2',
+    password='102030',
+    host='localhost',
     database='projeto_final_asa',
     port=5432
 )
@@ -68,3 +68,6 @@ class Pesagem(Base):
 
 
 Base.metadata.create_all(engine)
+
+
+#docker run --name postgreSQL_SERVER -e POSTGRES_PASSWORD=banco -e POSTGRES_USER=postgres -p 5432:5432 -d postgres:14

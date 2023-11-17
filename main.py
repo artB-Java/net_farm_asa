@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI
 from classes import Request_Animal, Request_Fazenda, Request_Fazendeiro, Request_Ordenha, Request_Pesagem
 from models import Animal,Fazenda,Fazendeiro,Pesagem, Ordenha, session
@@ -106,7 +105,7 @@ async def get_all_animais():
                 "sexo": animal.sexo,
                 "dt_nascimento": animal.dt_nascimento,
                 "categoria" : animal.categoria,
-                "ïdade" : animal.idade,
+                "idade" : animal.idade,
                 "id_fazenda" : animal.id_fazenda
             }
             animal_serializer = Request_Animal(**item)            
@@ -115,13 +114,19 @@ async def get_all_animais():
         publisher = Publisher(config)  
         logger.info('Enviando mensagem para o RabbitMQ')       
         publisher.publish('routing_key', animal_serializer.model_dump_json().encode())
+        return {
+            "status": "SUCESS",
+            "result": "OK"
+        }
+
     except Exception as e:
          logger.error(f'Erro na consulta dos animais -- get_all_animais() -- {e}')
          print(e)
-    return {
-        "status": "SUCESS",
-        "result": "OK"
-    }
+         return {
+            "status": "FAIL",
+            "result": "ERROR"
+        }
+
 
 
 

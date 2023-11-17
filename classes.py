@@ -34,7 +34,6 @@ class Request_Ordenha(BaseModel):
 
 class Request_Pesagem(BaseModel):
     idPesagem:          int
-    peso:                    float
+    peso:               float
     dataPesagem:        str
     idAnimal:           int
-
