@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI
 from classes import Request_Animal, Request_Fazenda, Request_Fazendeiro, Request_Ordenha, Request_Pesagem
 from models import Animal,Fazenda,Fazendeiro,Pesagem, Ordenha, session

@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 
 class Request_Animal(BaseModel):
-    id:                  int                 
-    dt_nascimento:       str        
-    raca:                str                
-    nome:                str                 
+    id:                 int                 
+    dt_nascimento:      str        
+    raca:               str                
+    nome:               str                 
     sexo:                str
     idade:               int 
     categoria:           str
@@ -27,15 +27,14 @@ class Request_Fazenda(BaseModel):
     idFazendeiro:       int
 
 class Request_Ordenha(BaseModel):
-    idOedenha:          int
+    idOrdenha:          int
     qtdLeite:           float
     dataOrdenha:        str
     idAnimal:           int
 
 class Request_Pesagem(BaseModel):
     idPesagem:          int
-    peso:               float
+    peso:                    float
     dataPesagem:        str
     idAnimal:           int
-
 
