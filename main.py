@@ -13,7 +13,7 @@ logger.setLevel(logging.DEBUG)
 app = FastAPI()
 
 config = {
-     'host': 'rabbitmq-service',
+     'host': '172.17.0.4',
      'port': 5672, 
      'exchange' : 'animais'
 }
@@ -90,6 +90,10 @@ async def criar_animal(request_animal: Request_Animal):
     }
 
 
+
+
+
+
 @app.get("/enviar_animais", status_code=200)
 async def get_all_animais():
     animais_to_send = []
@@ -108,24 +112,20 @@ async def get_all_animais():
                 "idade" : animal.idade,
                 "id_fazenda" : animal.id_fazenda
             }
-            animal_serializer = Request_Animal(**item)            
+            animal_serializer = Request_Animal(**item)
             animais_to_send.append(animal_serializer)
         
         publisher = Publisher(config)  
         logger.info('Enviando mensagem para o RabbitMQ')       
         publisher.publish('routing_key', animal_serializer.model_dump_json().encode())
-        return {
-            "status": "SUCESS",
-            "result": "OK"
-        }
-
     except Exception as e:
          logger.error(f'Erro na consulta dos animais -- get_all_animais() -- {e}')
          print(e)
-         return {
-            "status": "FAIL",
-            "result": "ERROR"
-        }
+    return {
+        "status": "SUCESS",
+        "result": "OK"
+    }
+
 
 
 
@@ -212,6 +212,7 @@ async def get_all_fazendeiros():
                 "sexo":fazendeiro.sexo ,
                 "endereco":fazendeiro.endereco ,
                 "contato":fazendeiro.contato ,
+                "email": fazendeiro.email,
                 "senha":fazendeiro.senha
             }
             fazendeiro_serializer = Request_Fazendeiro(**item)
