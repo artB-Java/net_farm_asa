@@ -7,8 +7,8 @@ from sqlalchemy.orm import relationship
 url = URL.create(
     drivername='postgresql+psycopg2',
     username='postgres',
-    password='102030',
-    host='172.17.0.2',
+    password='bd@123',
+    host='postgres',
     database='projeto_final_asa',
     port=5432
 )
