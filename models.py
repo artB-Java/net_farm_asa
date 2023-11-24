@@ -2,13 +2,14 @@ from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey
 from sqlalchemy.engine import URL
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.orm import relationship
+import os
 
 # definindo a URL para conexão no banco
 url = URL.create(
     drivername='postgresql+psycopg2',
     username='postgres',
     password='bd@123',
-    host='postgres',
+    host=os.getenv('POSTGRES_HOST'),
     database='projeto_final_asa',
     port=5432
 )

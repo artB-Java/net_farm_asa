@@ -22,7 +22,7 @@ spec:
             - containerPort: 8000
           env:
             - name: PS_DATABASE_URL
-              value: postgresql+psycopg2://postgres:bd%40123@localhost:5432/projeto_final_asa
+              value: postgresql://postgres:postgres@postgres:5432
           envFrom:
             - configMapRef:
                 name: postgres-config
